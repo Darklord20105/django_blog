@@ -28,9 +28,9 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = 'jb!o4wg)wa1+vgt17=q61$$u7d%l*t$%!w@gfsqkzwt22iwfq1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["my-django-blog-01.herokuapp.com"]
 
 
 # Application definition
