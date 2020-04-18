@@ -1,1 +1,1 @@
-web: gunicorn blog.wsgi --log-level=info --log-file -
+web: gunicorn blog.wsgi:application --log-level=info --log-file -
