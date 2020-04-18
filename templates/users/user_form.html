@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/user_form.css' %}?v=1" rel="stylesheet">
+{% endblock css %}
+
+{% block title %} Edit {{ object.username }} Info {% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row profile">
+    <div class="col-md-4 user-profile">
+      <h1>{{ user.username|title }}</h1>
+
+      {% if user.name %}<p class="lead">{{ user.name }}</p>{% endif %}
+
+      <div>
+        {% if user.picture %}
+        <img src="/media/{{ user.picture }}" style="width:100%" alt="Picture Profile" id="pic">
+        {% else %}
+        <img src="{% static 'img/user.png' %}" style="width:100%" alt="No Profile Picture" />
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{% url 'users:update' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-dark">Update Profile</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

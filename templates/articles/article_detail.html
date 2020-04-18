@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+<!-- {% block title %} {{ article.title }} {% endblock title %} -->
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+	<div class="row">
+		<!-- Post Content Column -->
+		<div class="col-lg-8">
+			<!-- Title -->
+			<h1 class="mt-4">{{ article.title }}</h1>
+			<!-- Author -->
+			<p class="lead">by
+				<a href="{% url 'users:detail' article.user.username %}">{{ article.user.get_profile_name|title }}</a>
+			</p>
+			<hr>
+			<!-- Date/Time -->
+			<p>Posted {{ article.pub_date }} </p>
+			<hr>
+			<!-- Post Content -->
+			<p class="card-text">{{ article.body|safe }}</p>
+			<hr>
+			<p>Series : {{ article.tutorial_series }}</p>
+		</div><!-- end col-lg-->
+
+
+		<div class="col-md-4">
+
+			<!-- Write Article Widget -->
+			{% if request.user.is_authenticated %}
+			<div class="card my-4">
+				<div class="card-body text-center">
+					<a class="btn btn-success" href="{% url 'articles:add_article' %}" title="Write a new article"><i
+							class="fa fa-pencil" aria-hidden="true"></i> New Article</a>
+
+					<a class="btn btn-primary" href="{% url 'articles:edit_article' article.pk %}"
+						title="Edit this article"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+
+					<a class="btn btn-danger" href="{% url 'articles:delete_article' article.pk %}"
+						title="Delete this article"><i class="fas fa-trash-alt" aria-hidden="true"></i> Delete </a>
+
+
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+
+	</div>
+	<!--end row-->
+	<div class="row">
+		<div class="col-12">
+			<h2>Leave a reply</h2>
+			<form action="/dashboard/article/{{article.pk}}" method="POST">
+				{% csrf_token %}
+				{{form.as_ul}}
+				<!-- <div class="from-group">
+					{{from.author}}
+				</div>
+				<div class="from-group">
+					{{from.email}}
+				</div>
+				<div class="from-group">
+					{{from.body}}
+				</div> -->
+				<button class="btn btn-info" type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<h2>Comments:</h2>
+			{% if comments %}
+			<ul>
+				{% for comment in comments %}
+				<li>
+					<h6>Author : {{ comment.author }}</h6>
+					<p><i>{{comment.created_on}}</i></p>
+					<div>
+						<p>{{comment.body}}</p>
+					</div>
+				</li>
+				{% endfor %}
+			</ul>
+			{% else %}
+			<p>No comments yet be the first to add one above</p>
+			{% endif %}
+		</div>
+	</div>
+</div>
+<!-- end container-->
+{% endblock content %}

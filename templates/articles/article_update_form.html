@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Edit Article {% endblock title %}
+{% block content%}
+<div class="container">
+  <div class="jumbotron">
+    <h1>Edit Article</h1>
+
+    <form action="{% url 'articles:edit_article' form.instance.pk %}" enctype="multipart/form-data" id="article-form"
+      method="POST" role="form">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary update">Update</button>
+        <a href="{% url 'articles:article_list' %}" class="btn btn-default"> Cancel </a>
+      </div>
+    </form>
+    {{ form.media }}
+
+
+  </div>
+</div>
+{% endblock %}
