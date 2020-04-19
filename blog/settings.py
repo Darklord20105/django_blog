@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ["my-django-blog-01.herokuapp.com"]
 # Application definition
 
 INSTALLED_APPS = [
-    'adminlteui',
+    # 'adminlteui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     # custom menu base on treebeard for django-adminlte
-    'treebeard',
+    # 'treebeard',
 ]
 
 AUTH_USER_MODEL = "users.User"
