@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block css %}
-<link href="{% static 'css/user_form.css' %}?v=1" rel="stylesheet">
+<link href="{% static 'general/css/user_form.css' %}?v=1" rel="stylesheet">
 {% endblock css %}
 
 {% block title %} Edit {{ object.username }} Info {% endblock title %}
@@ -20,7 +20,7 @@
         {% if user.picture %}
         <img src="/media/{{ user.picture }}" style="width:100%" alt="Picture Profile" id="pic">
         {% else %}
-        <img src="{% static 'img/user.png' %}" style="width:100%" alt="No Profile Picture" />
+        <img src="{% static 'general/img/user.png' %}" style="width:100%" alt="No Profile Picture" />
         {% endif %}
       </div>
     </div>

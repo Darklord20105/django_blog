@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-<link href="{% static 'css/user_profile.css' %}" rel="stylesheet">
+<link href="{% static 'general/css/user_profile.css' %}" rel="stylesheet">
 {% endblock css %}
 
 {% block title %}{{ object.username }}{% endblock %}
@@ -63,7 +63,7 @@
       {% if object.picture %}
       <img src="/media/{{ user.picture }}" alt="Picture Profile" style="width:100%" id="pic">
       {% else %}
-      <img class="pull-right" src="{% static 'img/user.png' %}" style="width:100%" height="250px"
+      <img class="pull-right" src="{% static 'general/img/user.png' %}" style="width:100%" height="250px"
         alt="No Profile Picture" />
       {% endif %}
     </div>
